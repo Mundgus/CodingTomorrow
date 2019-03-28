@@ -1,0 +1,40 @@
+{
+   "request_id":{
+      "car_id":0,
+      "game_id":0,
+      "tick":0
+   },
+   "cars":[
+      {
+         "life":100,
+         "transported":0,
+         "speed":0,
+         "direction":"LEFT",
+         "command":"0",
+         "id":0,
+         "pos":{
+            "x":48,
+            "y":18
+         }
+      }
+   ],
+   "messages":[
+
+   ],
+   "passengers":[
+      {
+         "dest_pos":{
+            "x":4,
+            "y":34
+         },
+         "id":16,
+         "pos":{
+            "x":58,
+            "y":58
+         }
+      }
+   ],
+   "pedestrians":[
+
+   ]
+}
