@@ -2,11 +2,12 @@
 #include <vector>
 #include <fstream>
 #include <sstream>
+#include <math.h>
+#include <set>
 #include "Object.hpp"
 #include "Car.hpp"
 #include "Pedestrian.hpp"
 #include "Passenger.hpp"
-//#include <cstdlib>
 
 
 
@@ -76,6 +77,9 @@ void loadTick(request_id& req, vector<Car>& cars, vector<Pedestrian> ped, vector
     file.close();
 }
 
+///Csak annyit csinál, hogy a legrövidebb útvonalat(nem a legyorsabbat!!!) megkeresi a két pont között (nem megy át a füvön)
+vector<position> pathfinder();
+
 
 int main(){
     vector<Car> cars;
@@ -105,3 +109,44 @@ vector<vector<char>> loadTerkep(){
     return terkep;
 }
 
+    struct pathPiece{
+        position actual;
+        position last;
+        unsigned double distance;
+        pathPiece(position ACTUAL, position FINISH){
+            actual = ACTUAL;
+            distance = sqrt(pow(ACTUAL.x-FINISH.x,2) + pow(ACTUAL.y-FINISH.y,2));
+        }
+        bool operator < (const pathPiece& P)const{
+            if(this->distance != P.distance)
+                return this->distance < P.distance;
+            if(this->actual.x != P.actual.x)
+                return this->actual.x < P.actual.x;
+            return this->actual.y < P.actual.y;
+        }
+    };
+
+vector<position> pathfinder(vector<vector<char>> terkep, position START, position FINISH){
+   /* set<pathPiece> path;
+    pathPiece P(START, FINISH);
+    path.insert(P);
+    while(path.begin()->distance != 0){
+        int x = path.begin()->actual.x;
+        int y = path.begin()->actual.y;
+        if(x != 60){
+            if(y != 60)
+                position p1(x+1,y+1);
+            if(y != 0)
+                position p2(x+1,y-1);
+        }
+        if(x != 0) {
+            if (y != 60)
+                position p3(x - 1, y + 1);
+            position p4(x - 1, y - 1);
+        }
+        pathPiece P1(p1,FINISH);
+        pathPiece P2(p2,FINISH);
+        pathPiece P3(p3,FINISH);
+        pathPiece P4(p4,FINISH);
+    }*/
+}
